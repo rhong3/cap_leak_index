@@ -20,3 +20,4 @@ FROM
   `physionet-data.eicu_crd.apacheapsvar`
 WHERE
   dialysis = 1 -- chronic dialysis prior to hospital adm
+
