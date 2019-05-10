@@ -32,3 +32,4 @@ LEFT JOIN first_rrt_intakeoutput USING (patientunitstayid)
 WHERE LEAST(first_rrt_treatment.treatmentoffset, first_rrt_intakeoutput.intakeoutputoffset) IS NOT NULL
 ORDER BY patientunitstayid
 
+

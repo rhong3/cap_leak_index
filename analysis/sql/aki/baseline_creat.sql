@@ -15,3 +15,5 @@ FROM tempo
 GROUP BY patientunitstayid
 ORDER BY patientunitstayid
 
+
+

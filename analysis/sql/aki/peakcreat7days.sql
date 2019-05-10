@@ -25,3 +25,5 @@ SELECT patientunitstayid,
 FROM   `physionet-data.eicu_crd.patient`
        LEFT OUTER JOIN peakcr USING (patientunitstayid)
 ORDER  BY patientunitstayid 
+
+
