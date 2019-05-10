@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1557523912522.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2848641707",
+    "id" : "A9A203D1",
+    "lastKnownWriteTime" : 1557523977,
+    "last_content_update" : 1557523977191,
+    "path" : "~/MEGA/Boston/MIT/cap_leak_index/analysis/sql/demographics.sql",
+    "project_path" : "analysis/sql/demographics.sql",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "sql"
+}
