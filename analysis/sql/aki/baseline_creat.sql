@@ -4,7 +4,7 @@ WITH tempo AS
            labresultoffset,
            labresult,
            ROW_NUMBER() OVER (PARTITION BY patientunitstayid, labname ORDER BY labresultoffset ASC) AS POSITION
-   FROM lab
+   FROM `physionet-data.eicu_crd.lab`
    WHERE ((labname) = 'creatinine')
      AND labresultoffset BETWEEN -720 AND 720 -- first creat available value between -12 and +12h from admission 
      ORDER BY patientunitstayid, labresultoffset )
@@ -14,3 +14,4 @@ SELECT patientunitstayid,
 FROM tempo
 GROUP BY patientunitstayid
 ORDER BY patientunitstayid
+

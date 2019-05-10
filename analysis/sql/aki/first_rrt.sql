@@ -1,23 +1,34 @@
 WITH first_rrt_treatment AS
-  (SELECT DISTINCT treatment.patientunitstayid,
+  (SELECT DISTINCT patientunitstayid,
    MIN (treatmentoffset) AS treatmentoffset
-   FROM eicu_crd_v2.treatment
-   WHERE Lower(treatment.treatmentstring) LIKE ANY ('{%rrt%,%dialysis%,%ultrafiltration%,%cavhd%,%cvvh%,%sled%}')
-     AND Lower(treatment.treatmentstring) NOT LIKE '%chronic%'
+   FROM `physionet-data.eicu_crd.treatment`
+   WHERE   LOWER(treatmentstring) LIKE '%rrt%'
+    OR LOWER(treatmentstring) LIKE '%dialysis%'
+    OR LOWER(treatmentstring) LIKE '%ultrafiltration%'
+    OR LOWER(treatmentstring) LIKE '%cavhd%' 
+    OR LOWER(treatmentstring) LIKE '%cvvh%' 
+    OR LOWER(treatmentstring) LIKE '%sled%'
+    AND Lower(treatmentstring) NOT LIKE '%chronic%'
    GROUP BY patientunitstayid),
    
   first_rrt_intakeoutput AS
-  (SELECT DISTINCT intakeoutput.patientunitstayid,
+  (SELECT DISTINCT patientunitstayid,
    MIN (intakeoutputoffset) AS intakeoutputoffset
-   FROM eicu_crd_v2.intakeoutput
-   WHERE lower(intakeoutput.cellpath) LIKE ANY ('{%dialysis%,%cvvh%,%rrt%,%cavhd%,%sled%,%ultrafiltration%}')
+   FROM `physionet-data.eicu_crd.intakeoutput`
+   WHERE LOWER(cellpath) LIKE '%rrt%'
+    OR LOWER(cellpath) LIKE '%dialysis%'
+    OR LOWER(cellpath) LIKE '%ultrafiltration%'
+    OR LOWER(cellpath) LIKE '%cavhd%' 
+    OR LOWER(cellpath) LIKE '%cvvh%' 
+    OR LOWER(cellpath) LIKE '%sled%'
    GROUP BY patientunitstayid)
    
-SELECT pt.patientunitstayid
+SELECT patientunitstayid
 ,LEAST (first_rrt_treatment.treatmentoffset, first_rrt_intakeoutput.intakeoutputoffset) AS first_rrtoffset
 ,1 AS rrt_bin
-FROM eicu_crd_v2.patient pt
-LEFT JOIN first_rrt_treatment ON first_rrt_treatment.patientunitstayid=pt.patientunitstayid
-LEFT JOIN first_rrt_intakeoutput ON first_rrt_intakeoutput.patientunitstayid=pt.patientunitstayid
+FROM `physionet-data.eicu_crd.patient`
+LEFT JOIN first_rrt_treatment USING (patientunitstayid)
+LEFT JOIN first_rrt_intakeoutput USING (patientunitstayid)
 WHERE LEAST(first_rrt_treatment.treatmentoffset, first_rrt_intakeoutput.intakeoutputoffset) IS NOT NULL
 ORDER BY patientunitstayid
+

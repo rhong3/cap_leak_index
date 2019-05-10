@@ -1,16 +1,22 @@
 -- Chronic patients with AKI receiving rrt prior to ICU admission
 SELECT
-  DISTINCT treatment.patientunitstayid
+  DISTINCT patientunitstayid
 FROM
-  treatment
+  `physionet-data.eicu_crd.treatment`
 WHERE
-  LOWER(treatment.treatmentstring) LIKE ANY ('{%rrt%,%dialysis%,%ultrafiltration%,%cavhd%,%cvvh%,%sled%}')
+  LOWER(treatmentstring) LIKE '%rrt%'
+  OR LOWER(treatmentstring) LIKE '%dialysis%'
+  OR LOWER(treatmentstring) LIKE '%ultrafiltration%'
+  OR LOWER(treatmentstring) LIKE '%cavhd%' 
+  OR LOWER(treatmentstring) LIKE '%cvvh%' 
+  OR LOWER(treatmentstring) LIKE '%sled%'
   AND 
-  LOWER(treatment.treatmentstring) LIKE '%chronic%'
-UNION  
+  LOWER(treatmentstring) LIKE '%chronic%'
+UNION  DISTINCT
+
   SELECT
-  DISTINCT apacheapsvar.patientunitstayid
-FROM
-  eicu_crd_v2.apacheapsvar
+  DISTINCT patientunitstayid
+FROM 
+  `physionet-data.eicu_crd.apacheapsvar`
 WHERE
-  apacheapsvar.dialysis = 1 -- chronic dialysis prior to hospital adm
+  dialysis = 1 -- chronic dialysis prior to hospital adm

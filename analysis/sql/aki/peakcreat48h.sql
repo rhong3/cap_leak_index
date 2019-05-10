@@ -3,8 +3,8 @@ WITH peakcr AS
           labresultoffset AS peakcreat48h_offset,
           labresult AS peakcreat48h,
           Row_number() OVER (PARTITION BY patientunitstayid
-                             ORDER BY lab.labresult DESC) AS POSITION
-   FROM lab
+                             ORDER BY labresult DESC) AS POSITION
+   FROM `physionet-data.eicu_crd.lab`
    WHERE labname LIKE 'creatinine%'
      AND labresultoffset >= 0
      AND labresultoffset <= (48 * 60) --Within 48hrs
