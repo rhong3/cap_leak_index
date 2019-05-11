@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Title: Peak creatinine within 48hrs.
+-- Notes: cap_leak_index/analysis/sql/aki/peakcreat48h.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 WITH peakcr AS
   (SELECT patientunitstayid,
           labresultoffset AS peakcreat48h_offset,
