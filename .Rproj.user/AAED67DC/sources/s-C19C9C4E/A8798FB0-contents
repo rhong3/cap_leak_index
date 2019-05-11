@@ -256,7 +256,7 @@ Final_dataset<-Final_dataset%>%
 # Dataset report
 
 ```{r}
-view(dfSummary(Final_dataset))
+view(dfSummary(Final_dataset[Final_dataset$Q_leakingn_index==4,c('gender','age_fixed','apachescore','Final_Charlson_score')]))
 ```
 
 # Export dataset

@@ -1,0 +1,5 @@
+"0","view(dfSummary(Final_dataset[,c('gender','age_fixed','apachescore','charlson_score')]))
+"
+"2","Error in `[.data.frame`(Final_dataset, , c(""gender"", ""age_fixed"", ""apachescore"",  : 
+  undefined columns selected
+"
