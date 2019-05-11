@@ -252,14 +252,16 @@ AKIlist_final$AKIstage <-
 AKIlist_final$first_rrtoffset<-NULL
 AKIlist_final[is.na(AKIlist_final)]<-0
 ```
-
+## Demographic Data
+```{r}
+demographic <- run_query(getSQL('sql/demographics.sql'))
+```
 
 ## Merging all datasets
 
 We are using a left join to join them
 
 ```{r}
-# Excluding <18 years old patients
 eicu_oasis_vs_brazilian_score_df<-merge(eicu_uniquepatients_first_icustay, eicu_pre_icu_data)
 
 # left join = all.x=TRUE

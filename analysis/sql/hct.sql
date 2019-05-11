@@ -33,3 +33,4 @@ USING
 WHERE
 position = 1
 and mean_hct_24_36hrs IS NOT NULL
+
