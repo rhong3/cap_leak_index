@@ -1,4 +1,4 @@
-# cap_leak_index
+# Is capillary leak index (CLI) a marker of severity of illness in sepsis?
 Study to test if capillary leak index (CLI) is a marker of severity of illness in sepsis.  
  - Sepsis is an important cause of morbidity and mortality
  - Capillary leak, the escape of protein-rich fluid leaks out of vessels into organs, is an important part of sepsis
@@ -10,5 +10,8 @@ Septic patients with a high CLI will have the same risk for morbidity and mortal
 ## Cohort
 Patients w/ sepsis (eICU database)
 
-_ Exposure: CLI (quartiles of severity)
-_ Outcome: in-hospital mortality
+## Exposure
+CLI (quartiles of severity)
+
+##Outcome
+in-hospital mortality
