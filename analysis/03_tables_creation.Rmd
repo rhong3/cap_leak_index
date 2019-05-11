@@ -30,24 +30,7 @@ listVars
 listVarstab1<-c(listVars,"STS_RiskAlgorithm")
 
 
-catVars<-c("Gender",
-  "Category",
-  #Background diseases
-  "Diabetes",
-  "RFDyslipidemia",
-  "Hypertension_final",
-  "Smoking",
-  "Congestive_Heart_Failure",
-  "Previous_myocardial_infarction",
-  "ChronicLungDisease",
-  "Dialysis",
-  #Preoperative medications
-  "PreOpMedBetaBlockers",
-  "PreOpMedACEI_or_ARBs",
-  "PreOpMedInotropes",
-  "PreOpMedSteroids",
-  "PreOpMedAspirin",
-  "PreOpMedLipidLowering")
+catVars<-c("patientunitstayid", "age_fixed", "gender", "weight", "height", "BMI", "BMI_group", "unitType", "hospitalAdmitSource", "hospLOS_prior_ICUadm_days", "body_surface_area", "apachescore", "actualicumortality", "actualhospitalmortality", "unabridgedunitlos", "unabridgedhosplos", "unabridgedactualventdays", "first_hct_6hrs", "mean_hct_24_36hrs", "AKIstage", "sofa_day1", "sofa_day2", "sofa_day3", "sofa_day4")
 
 table1 <- CreateTableOne(vars = listVarstab1, data = FinalHemodynamicsDataset, factorVars = catVars,testNormal=oneway.test 
                         #strata is usefull in case we want several columns to stratify by
