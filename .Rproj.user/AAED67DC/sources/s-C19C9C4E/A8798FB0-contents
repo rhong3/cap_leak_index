@@ -71,7 +71,8 @@ peakcreat7days<-run_query(getSQL('sql/aki/peakcreat7days.sql'))
 first_rrt <-run_query(getSQL('sql/aki/first_rrt.sql'))
 demographic <- run_query(getSQL('sql/demographics.sql'))
 demographic['body_surface_area']<-round(sqrt((demographic$height*demographic$weight) / 3600),2)
-patients <- run_query(getSQL('sql/patient_inexcluded.sql'))
+patient_inexcluded_icd9 <- run_query(getSQL('sql/patient_inexcluded_icd9.sql'))
+IO_exclusion <- run_query(getSQL('sql/IO_exclusion.sql'))
 ```
 
 ## AKI Dataset creation
@@ -210,7 +211,19 @@ AKIlist_final[is.na(AKIlist_final)]<-0
 We are using a left join to join them
 
 ```{r}
-selected_cohort<-inner_join(demographic,patients)
+# inclusion and exclusion based on icd9 code
+selected_cohort<-inner_join(demographic,patient_inexcluded_icd9)
+
+#exlusion based on intake output
+selected_cohort<-sqldf('
+SELECT * FROM selected_cohort
+LEFT JOIN
+IO_exclusion
+USING
+patientunitstayid
+
+')
+
 Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, AKIlist_final, baseline_creat, peakcreat48h, peakcreat7days, first_rrt,sofa_eicu
 ))
 ```

@@ -7,14 +7,14 @@
     "folds" : "",
     "hash" : "0",
     "id" : "A8798FB0",
-    "lastKnownWriteTime" : 1557584320,
-    "last_content_update" : 1557584320285,
+    "lastKnownWriteTime" : 1557586201,
+    "last_content_update" : 1557586201502,
     "path" : "~/MEGA/Boston/MIT/cap_leak_index/analysis/01_dataset_creation.Rmd",
     "project_path" : "analysis/01_dataset_creation.Rmd",
     "properties" : {
-        "cursorPosition" : "213,162",
+        "cursorPosition" : "73,72",
         "last_setup_crc32" : "C19C9C4E795e33f2",
-        "scrollLine" : "204"
+        "scrollLine" : "55"
     },
     "relative_order" : 8,
     "source_on_save" : false,
