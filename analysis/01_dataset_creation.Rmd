@@ -65,61 +65,14 @@ Loads all queries from the sql files in the extraction folder and runs them into
 ```{r}
 hct <- run_query(getSQL("sql/hct.sql" ))
 hct<-hct[complete.cases(hct),]
-```
-
-##Patients developing AKI during ICU stay
-
-### Data extraction
-
-Tables needed for calculating AKI stage.
-
-#### Chronic patients with AKI receiving rrt
-
-(they already had AKI before ICU admin)
-
-```{r}
-
 chronicAKI<-run_query(getSQL('sql/aki/chronicAKI.sql'))
-```
-
-#### Baseline Creatinine
-
-first available value between -12 and +12h from admission [VER 25/01/17]
-
-```{r}
 baseline_creat<-run_query(getSQL('sql/aki/baseline_creat.sql'))
-```
-
-#### Peak creatinine within 48h
-
-Peak creatinine within first 48h + time from admission to peak creatinine within first 48h
-
-```{r}
 peakcreat48h<-run_query(getSQL('sql/aki/peakcreat48h.sql'))
-```
-
-#### Peak creatinine within first 7 days
-
-Peak creatinine within first 7 days + time from admission to peak creatinine in 7 days + time from peak creatinine in 7 days to ICU discharge
-
-```{r}
 peakcreat7days<-run_query(getSQL('sql/aki/peakcreat7days.sql'))
+first_rrt <-run_query(getSQL('sql/aki/first_rrt.sql'))
+demographic <- run_query(getSQL('sql/demographics.sql'))
+patients <- run_query(getSQL('sql/patient_inexcluded.sql'))
 ```
-
-
-
-### AKI Dataset creation
-
-```{r}
-library(dplyr)
-#We need to exclude patients who already had AKI before ICU admin)
-AKIdevelopment<-subset(baseline_creat, !(baseline_creat$patientunitstayid %in% chronicAKI$patientunitstayid) )
-AKIdevelopment<-left_join(AKIdevelopment, peakcreat7days)
-AKIdevelopment<-left_join(AKIdevelopment, peakcreat48h)
-AKIdevelopment$position<-NULL
-```
-
-
 ### Windsorization
 
 Clean data by means of winsorization, i.e., by shrinking outlying observations to the border of the main part of the data.
@@ -147,8 +100,6 @@ AKIdevelopmentW$peakcreat48h<-winsorize_x(AKIdevelopmentW$peakcreat48h)
 AKIdevelopmentW$creat1[is.na(AKIdevelopmentW$creat1)]<-0
 AKIdevelopmentW$peakcreat7d[is.na(AKIdevelopmentW$peakcreat7d)]<-0
 AKIdevelopmentW$peakcreat48h[is.na(AKIdevelopmentW$peakcreat48h)]<-0
-
-
 
 
 ```
@@ -216,16 +167,6 @@ AKIlist<-AKIdevelopmentW %>%
          )
 ```
 
-# First RRT
-
-Extracts the first rrt from non chronic patients from treatment and the first rrt from intakeoutput separately. 
-Then it selects the first rrt between treatment and intakeoutput per patient.
-
-```{r}
-# query the data from postgreSQL 
-first_rrt <-run_query(getSQL('sql/aki/first_rrt.sql'))
-```
-
 # Final List of patients with AKI and offset (with RRT)
 
 Offset is not reliable so we exclude it.
@@ -251,10 +192,6 @@ AKIlist_final$AKIstage <-
 
 AKIlist_final$first_rrtoffset<-NULL
 AKIlist_final[is.na(AKIlist_final)]<-0
-```
-## Demographic Data
-```{r}
-demographic <- run_query(getSQL('sql/demographics.sql'))
 ```
 
 ## Merging all datasets

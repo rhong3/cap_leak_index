@@ -143,3 +143,5 @@ ON
   demographics.patientunitstayid = patient.patientunitstayid
 WHERE 
   age_fixed >= 18  
+
+
