@@ -5,7 +5,7 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "441701665",
     "id" : "ACE646C5",
     "lastKnownWriteTime" : 1557584196,
     "last_content_update" : 1557584196,
@@ -16,7 +16,7 @@
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
-    "relative_order" : 11,
+    "relative_order" : 9,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "sql"

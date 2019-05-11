@@ -73,6 +73,7 @@ demographic <- run_query(getSQL('sql/demographics.sql'))
 demographic['body_surface_area']<-round(sqrt((demographic$height*demographic$weight) / 3600),2)
 patient_inexcluded_icd9 <- run_query(getSQL('sql/patient_inexcluded_icd9.sql'))
 IO_exclusion <- run_query(getSQL('sql/IO_exclusion.sql'))
+charlson_score <- run_query(getSQL('sql/charlson_score.sql'))
 ```
 
 ## AKI Dataset creation
@@ -226,14 +227,42 @@ WHERE
 IO_exclusion.patientunitstayid IS NULL
 ')
 
-Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, apache_related,hct,AKIlist_final,sofa_eicu
+Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, apache_related,hct,AKIlist_final,sofa_eicu,charlson_score
 ))
+
+# Creating new variables
+Final_dataset<-Final_dataset%>%
+  mutate(
+    leakingn_index=((mean_hct_24_36hrs/first_hct_6hrs)-1)*body_surface_area*1561
+    ,delta_sofa=sofa_day1-sofa_day4
+    ,Q_leakingn_index=as.numeric(cut2(leakingn_index, g=4))
+    ,delta_sofa_bin=as.numeric(cut2(delta_sofa, g=2))
+)
+
+Final_dataset$Q_leakingn_index<-as.factor(Final_dataset$Q_leakingn_index)
+
+Final_dataset$delta_sofa_bin[Final_dataset$delta_sofa_bin==1]<-0
+Final_dataset$delta_sofa_bin[Final_dataset$delta_sofa_bin==2]<-1
+
+Final_dataset$actualhospitalmortality[Final_dataset$actualhospitalmortality=='ALIVE']<-0
+
+Final_dataset$actualhospitalmortality[Final_dataset$actualhospitalmortality=='EXPIRED']<-1
+Final_dataset$actualhospitalmortality<-as.factor(Final_dataset$actualhospitalmortality)
+
+Final_dataset<-Final_dataset%>%
+  filter(!is.na(leakingn_index))
 ```
 
 # Dataset report
 
 ```{r}
 view(dfSummary(Final_dataset))
+```
+
+# Export dataset
+
+```{r}
+write.csv(Final_dataset, 'Final_dataset.csv',row.names = F)
 ```
 
 

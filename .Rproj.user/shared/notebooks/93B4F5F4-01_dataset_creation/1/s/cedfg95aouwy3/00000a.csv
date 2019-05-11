@@ -1,7 +1,0 @@
-"0","Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, apache_related,hct,AKIlist_final,sofa_eicu
-)))
-"
-"2","Error: unexpected ')' in:
-""Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, apache_related,hct,AKIlist_final,sofa_eicu
-)))""
-"

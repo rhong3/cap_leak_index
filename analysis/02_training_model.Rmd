@@ -16,19 +16,49 @@ require(reshape2)
 ```
 
 
-# Model
+# Training ordered ordered logit model
 
 ```{r}
 ## fit ordered logit model and store results 'm'
-m <- polr(as.factor(AKIstage) ~ 
-            age_fixed + gender + body_surface_area
-          + apachescore + actualicumortality
-          #+ unabridgedunitlos + unabridgedactualventdays 
-          + first_hct_6hrs + mean_hct_24_36hrs + AKIstage 
-          + sofa_day1 + sofa_day2 + sofa_day3 + sofa_day4
+m <- polr(as.factor(delta_sofa) ~ 
+            Q_leakingn_index
+          +apachescore
+          +Final_Charlson_score
           , data = Final_dataset, Hess=TRUE)
 
 ## view a summary of the model
 summary(m)
 ```
+
+# Training logistic regression model
+
+```{r}
+
+mod_multiv<-glm(actualhospitalmortality  ~ 
+                 Q_leakingn_index
+                +apachescore
+                +Final_Charlson_score
+                 #+offset(log(duration_Surgery_min))
+                 ,family='binomial'
+                 ,data = Final_dataset
+                )
+
+mod_multiv
+
+oddsratios_table<-exp(cbind(coef(mod_multiv), confint(mod_multiv)))  
+options(scipen=999)
+oddsratios_table<-round(oddsratios_table,4)
+
+oddsratios_table<-as.data.frame(oddsratios_table)
+colnames(oddsratios_table)[1]<-"OR"
+
+oddsratios_table<-oddsratios_table[order(row.names(oddsratios_table)), ]
+boxLabels<-rownames(oddsratios_table)
+
+
+#write.xlsx(as.data.frame(print(oddsratios_table)), "oddsratios_table.xlsx")
+
+```
+
+
 
