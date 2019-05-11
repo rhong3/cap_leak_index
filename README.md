@@ -13,5 +13,5 @@ Patients w/ sepsis (eICU database)
 ## Exposure
 CLI (quartiles of severity)
 
-##Outcome
+## Outcome
 in-hospital mortality
