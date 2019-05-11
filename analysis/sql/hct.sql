@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Title: Patients hematocrit in -6~+6 and 24~36 hours.
+-- Notes: cap_leak_index/analysis/sql/hct.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 WITH
 first_hct_6hrs AS (
   SELECT

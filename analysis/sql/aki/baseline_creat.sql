@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Title: Patients first creatinine available value between -12 and +12h from admission 
+-- Notes: cap_leak_index/analysis/sql/aki/baseline_creat.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 WITH tempo AS
   ( SELECT patientunitstayid,
            labname,

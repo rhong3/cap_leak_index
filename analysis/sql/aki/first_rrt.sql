@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Title: First rrt treatment (from treatment and intakeoutput tables)
+-- Notes: cap_leak_index/analysis/sql/aki/first_rrt.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 WITH first_rrt_treatment AS
   (SELECT DISTINCT patientunitstayid,
    MIN (treatmentoffset) AS treatmentoffset
