@@ -1,5 +1,0 @@
-"0","hct<-hct[,complete.cases(hct)]
-"
-"2","Error in `[.data.frame`(hct, , complete.cases(hct)) : 
-  undefined columns selected
-"

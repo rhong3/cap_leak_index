@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3643176756",
+    "hash" : "0",
     "id" : "9677E27A",
     "lastKnownWriteTime" : 1557518092,
     "last_content_update" : 1557518092519,
     "path" : "~/MEGA/Boston/MIT/cap_leak_index/analysis/sql/IO_exclusion.sql",
     "project_path" : "analysis/sql/IO_exclusion.sql",
     "properties" : {
-        "cursorPosition" : "48,18",
-        "scrollLine" : "11",
+        "cursorPosition" : "3,21",
+        "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "relative_order" : 5,
