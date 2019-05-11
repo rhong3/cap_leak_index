@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Title: Select patientunitstayid from intakeoutput 
+-- Notes:  cap_leak_index/analysis/sql/IO_exclusion.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 WITH
   blood AS(
   SELECT
