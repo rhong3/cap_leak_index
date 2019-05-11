@@ -1,3 +1,11 @@
+-- ------------------------------------------------------------------
+-- Title: Select patients from diagnosis 
+--        which are included & excluded by icd9codes
+--        and join apachepatientresult
+-- Notes: cap_leak_index/analysis/sql/patients_icd9_apache.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 %%bigquery --project physionet-data df
 WITH t_dg AS (
   SELECT *
