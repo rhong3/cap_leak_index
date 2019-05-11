@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Title: Peak creatinine within 7 days.
+-- Notes: cap_leak_index/analysis/sql/aki/peakcreat7days.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 WITH peakcr 
      AS (SELECT * 
          FROM   (SELECT patientunitstayid, 
