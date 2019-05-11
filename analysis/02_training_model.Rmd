@@ -16,7 +16,7 @@ require(reshape2)
 ```
 
 
-# Training ordered ordered logit model
+# Training ordered logit model
 
 ```{r}
 ## fit ordered logit model and store results 'm'

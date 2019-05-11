@@ -23,6 +23,6 @@
 "0","  theme(panel.grid.minor = element_blank()) +"
 "0","  ylab(""Exposure"") +"
 "0","  xlab(""Odds ratio"") +"
-"0","  ggtitle(""Impact on Any MAE"")"
+"0","  ggtitle(""Impact on mortality"")"
 "0","p<-ggplotly(p)"
 "0","p<-ggplotly(p%>%layout(hovermode = 'compare'))"
