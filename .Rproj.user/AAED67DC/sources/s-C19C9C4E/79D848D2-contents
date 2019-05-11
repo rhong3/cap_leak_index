@@ -61,6 +61,7 @@ getSQL <- function(filepath){
 Loads all queries from the sql files in the extraction folder and runs them into RBigQuey to extract the data.
 
 ```{r}
+apache_related<-run_query(getSQL("sql/hct.sql" ))
 hct <- run_query(getSQL("sql/hct.sql" ))
 hct<-hct[complete.cases(hct),]
 chronicAKI<-run_query(getSQL('sql/aki/chronicAKI.sql'))
@@ -69,6 +70,7 @@ peakcreat48h<-run_query(getSQL('sql/aki/peakcreat48h.sql'))
 peakcreat7days<-run_query(getSQL('sql/aki/peakcreat7days.sql'))
 first_rrt <-run_query(getSQL('sql/aki/first_rrt.sql'))
 demographic <- run_query(getSQL('sql/demographics.sql'))
+demographic['body_surface_area']<-round(sqrt((demographic$height*demographic$weight) / 3600),2)
 patients <- run_query(getSQL('sql/patient_inexcluded.sql'))
 ```
 

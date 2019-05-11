@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1557582282745.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3508584313",
+    "id" : "B33F206A",
+    "lastKnownWriteTime" : 1540418867,
+    "last_content_update" : 1540418867,
+    "path" : "~/MEGA/Boston/MIT/cap_leak_index/analysis/03_tables_creation.Rmd",
+    "project_path" : "analysis/03_tables_creation.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
