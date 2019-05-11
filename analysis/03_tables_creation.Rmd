@@ -26,35 +26,15 @@ library(xlsx)
 # Table 1
 
 ```{r}
-listVars
-listVarstab1<-c(listVars,"STS_RiskAlgorithm")
+listVarstab1<-c("patientunitstayid", "age_fixed", "gender", "weight", "height", "BMI", "BMI_group", "unitType", "hospitalAdmitSource", "hospLOS_prior_ICUadm_days", "body_surface_area", "apachescore", "actualicumortality", "actualhospitalmortality", "unabridgedunitlos", "unabridgedhosplos", "unabridgedactualventdays", "first_hct_6hrs", "mean_hct_24_36hrs", "AKIstage", "sofa_day1", "sofa_day2", "sofa_day3", "sofa_day4")
 
+catVars<-c("gender", "BMI_group", "unitType", "hospitalAdmitSource", "apachescore", "actualicumortality", "actualhospitalmortality", "AKIstage", "sofa_day1", "sofa_day2", "sofa_day3", "sofa_day4")
 
-catVars<-c("Gender",
-  "Category",
-  #Background diseases
-  "Diabetes",
-  "RFDyslipidemia",
-  "Hypertension_final",
-  "Smoking",
-  "Congestive_Heart_Failure",
-  "Previous_myocardial_infarction",
-  "ChronicLungDisease",
-  "Dialysis",
-  #Preoperative medications
-  "PreOpMedBetaBlockers",
-  "PreOpMedACEI_or_ARBs",
-  "PreOpMedInotropes",
-  "PreOpMedSteroids",
-  "PreOpMedAspirin",
-  "PreOpMedLipidLowering")
-
-table1 <- CreateTableOne(vars = listVarstab1, data = FinalHemodynamicsDataset, factorVars = catVars,testNormal=oneway.test 
+table1 <- CreateTableOne(vars = listVarstab1, data = Final_dataset, factorVars = catVars,testNormal=oneway.test 
                         #strata is usefull in case we want several columns to stratify by
                          )
 
-table1strat <- CreateTableOne(vars = listVarstab1, data = FinalHemodynamicsDataset, factorVars = catVars,testNormal=oneway.test 
-                        ,strata = c("Any_MAE")
+table1strat <- CreateTableOne(vars = listVarstab1, data = Final_dataset, factorVars = catVars,testNormal=oneway.test 
                         #strata is usefull in case we want several columns to stratify by
                          )
 ## nonnormal specifies variables to be shown as median [IQR]
@@ -65,9 +45,8 @@ table1strat <- CreateTableOne(vars = listVarstab1, data = FinalHemodynamicsDatas
 
 # As an aside, the following code may help for your projects, as it improves the presentation of the tables above.  You will still need to update the column and row names manually, but this should paste nicely into Word or LateX!
 
-write.xlsx(as.data.frame(print(table1)), "table1.xlsx")
-write.xlsx(as.data.frame(print(table1strat)), "table1strat.xlsx")
-
+write.xlsx(as.data.frame(print(table1)), "table1.xlsx", col.names=TRUE, row.names=TRUE)
+write.xlsx(as.data.frame(print(table1strat)), "table1strat.xlsx", col.names=TRUE, row.names=TRUE)
 
 #  if(!("dplyr" %in% installed.packages()[,1])) {
 #  install.packages("dplyr")
