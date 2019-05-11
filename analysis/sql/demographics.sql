@@ -1,5 +1,5 @@
 -- ------------------------------------------------------------------
--- Title: patients demographics
+-- Title: Patients demographics
 -- Notes: cap_leak_index/analysis/sql/demographics.sql 
 --        cap_leak_index, 20190511 NYU Datathon
 --        eICU Collaborative Research Database v2.0.
