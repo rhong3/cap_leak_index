@@ -12,15 +12,15 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "16BDD2AF",
+        "cacheKey" : "553D60CD",
         "caption" : "demographic",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=demographic&cache_key=16BDD2AF",
-        "displayedObservations" : 200234,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=demographic&cache_key=553D60CD",
+        "displayedObservations" : "200234",
         "environment" : "",
         "object" : "demographic",
-        "preview" : 0,
-        "totalObservations" : 200234,
-        "variables" : 10
+        "preview" : "0",
+        "totalObservations" : "200234",
+        "variables" : "11"
     },
     "relative_order" : 8,
     "source_on_save" : false,

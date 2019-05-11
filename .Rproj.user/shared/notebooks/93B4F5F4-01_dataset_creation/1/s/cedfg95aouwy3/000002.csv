@@ -1,0 +1,5 @@
+"0","selected_cohort<-inner_join(demographic,patients)"
+"2","Joining, by = c(""patientunitstayid"", ""gender"")
+"
+"0","Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, AKIlist_final, baseline_creat, peakcreat48h, peakcreat7days, first_rrt"
+"0","))"

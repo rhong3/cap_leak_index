@@ -61,7 +61,7 @@ getSQL <- function(filepath){
 Loads all queries from the sql files in the extraction folder and runs them into RBigQuey to extract the data.
 
 ```{r}
-apache_related<-run_query(getSQL("sql/hct.sql" ))
+apache_related<-run_query(getSQL("sql/apache_related.sql" ))
 hct <- run_query(getSQL("sql/hct.sql" ))
 hct<-hct[complete.cases(hct),]
 chronicAKI<-run_query(getSQL('sql/aki/chronicAKI.sql'))
@@ -74,7 +74,17 @@ demographic['body_surface_area']<-round(sqrt((demographic$height*demographic$wei
 patients <- run_query(getSQL('sql/patient_inexcluded.sql'))
 ```
 
-## Windsorization
+## AKI Dataset creation
+
+```{r}
+#We need to exclude patients who already had AKI before ICU admin)
+AKIdevelopment<-subset(baseline_creat, !(baseline_creat$patientunitstayid %in% chronicAKI$patientunitstayid) )
+AKIdevelopment<-left_join(AKIdevelopment, peakcreat7days)
+AKIdevelopment<-left_join(AKIdevelopment, peakcreat48h)
+AKIdevelopment$position<-NULL
+```
+
+### Windsorization
 
 Clean data by means of winsorization, i.e., by shrinking outlying observations to the border of the main part of the data.
 The creatinine values have been winsorize replacing the extreme observations using 95% and 5% percentiles.
@@ -105,7 +115,7 @@ AKIdevelopmentW$peakcreat48h[is.na(AKIdevelopmentW$peakcreat48h)]<-0
 
 ```
 
-##List of patients with AKI and offset
+###List of patients with AKI and offset
 
 ```{r}
 
@@ -168,7 +178,7 @@ AKIlist<-AKIdevelopmentW %>%
          )
 ```
 
-# Final List of patients with AKI and offset (with RRT)
+### Final List of patients with AKI and offset (with RRT)
 
 Offset is not reliable so we exclude it.
 
@@ -195,16 +205,17 @@ AKIlist_final$first_rrtoffset<-NULL
 AKIlist_final[is.na(AKIlist_final)]<-0
 ```
 
-## Merging all datasets
+# Merging all datasets
 
 We are using a left join to join them
 
 ```{r}
-Merged<-Reduce(function(...) merge(..., all.x=TRUE), list(hct, AKIlist_final, baseline_creat, peakcreat48h, peakcreat7days, first_rrt, demographic, patients
+selected_cohort<-inner_join(demographic,patients)
+Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, AKIlist_final, baseline_creat, peakcreat48h, peakcreat7days, first_rrt,sofa_eicu
 ))
 ```
 
-## Dataset report
+# Dataset report
 
 ```{r}
 view(dfSummary(eicu_oasis_vs_brazilian_score_df))
