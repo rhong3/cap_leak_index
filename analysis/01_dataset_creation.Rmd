@@ -204,6 +204,7 @@ AKIlist_final$AKIstage <-
 
 AKIlist_final$first_rrtoffset<-NULL
 AKIlist_final[is.na(AKIlist_final)]<-0
+AKIlist_final$rrt_bin<-NULL
 ```
 
 # Merging all datasets
@@ -220,18 +221,19 @@ SELECT * FROM selected_cohort
 LEFT JOIN
 IO_exclusion
 USING
-patientunitstayid
-
+(patientunitstayid)
+WHERE
+IO_exclusion.patientunitstayid IS NULL
 ')
 
-Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, AKIlist_final, baseline_creat, peakcreat48h, peakcreat7days, first_rrt,sofa_eicu
+Final_dataset<-Reduce(function(...) merge(..., all.x=TRUE), list(selected_cohort, apache_related,hct,AKIlist_final,sofa_eicu
 ))
 ```
 
 # Dataset report
 
 ```{r}
-view(dfSummary(eicu_oasis_vs_brazilian_score_df))
+view(dfSummary(Final_dataset))
 ```
 
 

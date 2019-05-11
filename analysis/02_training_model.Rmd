@@ -5,26 +5,30 @@ date: "May 11, 2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# Libraries
+
+```{r}
+require(foreign)
+require(ggplot2)
+require(MASS)
+require(Hmisc)
+require(reshape2)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Model
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+## fit ordered logit model and store results 'm'
+m <- polr(as.factor(AKIstage) ~ 
+            age_fixed + gender + body_surface_area
+          + apachescore + actualicumortality
+          #+ unabridgedunitlos + unabridgedactualventdays 
+          + first_hct_6hrs + mean_hct_24_36hrs + AKIstage 
+          + sofa_day1 + sofa_day2 + sofa_day3 + sofa_day4
+          , data = Final_dataset, Hess=TRUE)
 
-```{r cars}
-summary(cars)
+## view a summary of the model
+summary(m)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

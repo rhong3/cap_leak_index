@@ -7,16 +7,16 @@
     "folds" : "",
     "hash" : "0",
     "id" : "34F0B57A",
-    "lastKnownWriteTime" : 1557585232,
-    "last_content_update" : 1557585232872,
+    "lastKnownWriteTime" : 1557587963,
+    "last_content_update" : 1557587963899,
     "path" : "~/MEGA/Boston/MIT/cap_leak_index/analysis/02_training_model.Rmd",
     "project_path" : "analysis/02_training_model.Rmd",
     "properties" : {
-        "cursorPosition" : "5,3",
+        "cursorPosition" : "24,26",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
-    "relative_order" : 7,
+    "relative_order" : 3,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
