@@ -1,4 +1,9 @@
--- Chronic patients with AKI receiving rrt prior to ICU admission
+-- ------------------------------------------------------------------
+-- Title: Chronic patients with AKI receiving rrt prior to ICU admission
+-- Notes: cap_leak_index/analysis/sql/aki/chronicAKI.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 SELECT
   DISTINCT patientunitstayid
 FROM
