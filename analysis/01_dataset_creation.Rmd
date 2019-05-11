@@ -56,9 +56,7 @@ getSQL <- function(filepath){
 }
 ```
 
-# eICU
-
-## Loading queries and extracting the data
+# Loading queries and extracting the data
 
 Loads all queries from the sql files in the extraction folder and runs them into RBigQuey to extract the data.
 
@@ -73,7 +71,8 @@ first_rrt <-run_query(getSQL('sql/aki/first_rrt.sql'))
 demographic <- run_query(getSQL('sql/demographics.sql'))
 patients <- run_query(getSQL('sql/patient_inexcluded.sql'))
 ```
-### Windsorization
+
+## Windsorization
 
 Clean data by means of winsorization, i.e., by shrinking outlying observations to the border of the main part of the data.
 The creatinine values have been winsorize replacing the extreme observations using 95% and 5% percentiles.
@@ -104,7 +103,7 @@ AKIdevelopmentW$peakcreat48h[is.na(AKIdevelopmentW$peakcreat48h)]<-0
 
 ```
 
-###List of patients with AKI and offset
+##List of patients with AKI and offset
 
 ```{r}
 
