@@ -198,12 +198,7 @@ AKIlist_final[is.na(AKIlist_final)]<-0
 We are using a left join to join them
 
 ```{r}
-eicu_oasis_vs_brazilian_score_df<-merge(eicu_uniquepatients_first_icustay, eicu_pre_icu_data)
-
-# left join = all.x=TRUE
-eicu_oasis_vs_brazilian_score_df<-Reduce(function(...) merge(..., all.x=TRUE), list(
-   a
-  ,b
+Merged<-Reduce(function(...) merge(..., all.x=TRUE), list(hct, AKIlist_final, baseline_creat, peakcreat48h, peakcreat7days, first_rrt, demographic, patients
 ))
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: "Tables"
-author: "Miguel Ángel Armengol de la Hoz"
+author: "Miguel ?ngel Armengol de la Hoz"
 output:
   html_document:
     toc: true
@@ -95,8 +95,7 @@ write.xlsx(as.data.frame(print(table1strat)), "table1strat.xlsx")
 library(tableone)
 library(magrittr)
 
-listExposures<-c('AOT30DBP_postCPB_min','AOT30DBP_preCPB_min','AOT30DBP_total_min','AOT65MAP_CPB_min','AOT65MAP_postCPB_min','AOT65MAP_preCPB_min','AOT65MAP_total_min','AOT95SBP_postCPB_min','AOT95SBP_preCPB_min','AOT95SBP_total_min','AUT30DBP_postCPB_min','AUT30DBP_preCPB_min','AUT30DBP_total_min','AUT50MAP_CPB_min','AUT50MAP_postCPB_min','AUT50MAP_preCPB_min','AUT50MAP_total_min','AUT65MAP_CPB_min','AUT65MAP_postCPB_min','AUT65MAP_preCPB_min','AUT65MAP_total_min','AUT95SBP_postCPB_min','AUT95SBP_preCPB_min','AUT95SBP_total_min','AWI51_60MAP_CPB_min','AWI51_60MAP_postCPB_min','AWI51_60MAP_preCPB_min','AWI51_60MAP_total_min','AWI61_65MAP_CPB_min','AWI61_65MAP_postCPB_min','AWI61_65MAP_preCPB_min','AWI61_65MAP_total_min','duration_CPB_min','duration_postCPB_min','duration_preCPB_min','duration_Surgery_min')
-
+listExposures<-c("patientunitstayid", "gender", "rrt_bin", "first_hct_6hrs", "mean_hct_24_36hrs", "AKIstage", "creat1", "creat1offset", "peakcreat48h_offset", "peakcreat48h" ,"peakcreat7d", "peakcreat7d_offset", "peakcreat7d_to_discharge_offsetgap", "first_rrtoffset", "age_fixed", "weight", "height", "BMI", "BMI_group", "unitType", "hospitalAdmitSource", "hospLOS_prior_ICUadm_days", "patienthealthsystemstayid", "age", "ethnicity", "hospitalid", "wardid", "apacheadmissiondx", "admissionheight", "hospitaladmittime24", "hospitaladmitoffset", "hospitaladmitsource", "hospitaldischargeyear", "hospitaldischargetime24", "hospitaldischargeoffset", "hospitaldischargelocation", "hospitaldischargestatus", "unittype", "unitadmittime24", "unitadmitsource", "unitvisitnumber", "unitstaytype", "admissionweight", "dischargeweight", "unitdischargetime24", "unitdischargeoffset", "unitdischargelocation", "unitdischargestatus", "uniquepid" )
 table2all <- CreateTableOne(vars = listExposures, data = FinalHemodynamicsDataset, testNormal=oneway.test)
 
 write.xlsx(as.data.frame(print(table2all)), "table2all.xlsx")
