@@ -4,7 +4,7 @@
 --        cap_leak_index, 20190511 NYU Datathon
 --        eICU Collaborative Research Database v2.0.
 -- ------------------------------------------------------------------
-SELECT *
+SELECT patientunitstayid
 FROM 
 `physionet-data.eicu_crd.patient` 
 WHERE patientunitstayid in (
@@ -365,4 +365,5 @@ icd9code LIKE '%432.9%'
 )
 )
 ORDER BY patientunitstayid
-LIMIT 5
+
+
