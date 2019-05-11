@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Title: Select patients from diagnosis which are included & excluded by icd9codes
+-- Notes: cap_leak_index/analysis/sql/patient_inexcluded.sql 
+--        cap_leak_index, 20190511 NYU Datathon
+--        eICU Collaborative Research Database v2.0.
+-- ------------------------------------------------------------------
 SELECT *
 FROM 
 `physionet-data.eicu_crd.patient` 
